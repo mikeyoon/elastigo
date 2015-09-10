@@ -13,8 +13,9 @@ func TestEmbedDsl(t *testing.T) {
 		Order("order").Type("fdsa").
 		MatchedFields("1", "2"))
 
-	actual := GetJson(highlight)
+	actual, err := GetJson(highlight)
 
+	assert.Equal(t, err, nil)
 	assert.Equal(t, "<div>", actual["pre_tags"].([]interface{})[0])
 	assert.Equal(t, "</div>", actual["post_tags"].([]interface{})[0])
 	assert.Equal(t, "asdf", actual["boundary_chars"])
@@ -35,9 +36,10 @@ func TestFieldDsl(t *testing.T) {
 		Order("order").Type("fdsa").
 		MatchedFields("1", "2"))
 
-	result := GetJson(highlight)
+	result, err := GetJson(highlight)
 	actual := result["fields"].(map[string]interface{})["whatever"].(map[string]interface{})
 
+	assert.Equal(t, err, nil)
 	assert.Equal(t, "<div>", actual["pre_tags"].([]interface{})[0])
 	assert.Equal(t, "</div>", actual["post_tags"].([]interface{})[0])
 	assert.Equal(t, "asdf", actual["boundary_chars"])
@@ -55,9 +57,10 @@ func TestEmbedAndFieldDsl(t *testing.T) {
 		SetOptions(NewHighlightOpts().Tags("<div>", "</div>")).
 		AddField("afield", NewHighlightOpts().Type("something"))
 
-	actual := GetJson(highlight)
+	actual, err := GetJson(highlight)
 	actualField := actual["fields"].(map[string]interface{})["afield"].(map[string]interface{})
 
+	assert.Equal(t, err, nil)
 	assert.Equal(t, "<div>", actual["pre_tags"].([]interface{})[0])
 	assert.Equal(t, "</div>", actual["post_tags"].([]interface{})[0])
 	assert.Equal(t, "something", actualField["type"])

@@ -2,7 +2,6 @@ elastigo v2.0
 -------------
 
 [![Build Status](https://drone.io/github.com/mikeyoon/elastigo/status.png)](https://drone.io/github.com/mikeyoon/elastigo/latest)
-[![Total views](https://sourcegraph.com/api/repos/github.com/mikeyoon/elastigo/counters/views.png)](https://sourcegraph.com/github.com/mikeyoon/elastigo)
 
 Big thanks to @alicebob for helping to get the drone.io CI working (note: the badge is being cached, known issue).
 

@@ -23,13 +23,13 @@ var (
 	logLevel *string = flag.String("logging", "info", "Which log level: [debug,info,warn,error,fatal]")
 )
 
-func GetJson(input interface{}) map[string]interface{} {
+func GetJson(input interface{}) (map[string]interface{}, error) {
 	var result map[string]interface{}
-	bytes, _ := json.Marshal(input)
+	bytes, err := json.Marshal(input)
 
-  json.Unmarshal(bytes, &result)
+	json.Unmarshal(bytes, &result)
 
-	return result
+	return result, err
 }
 
 func HasKey(input map[string]interface{}, key string) bool {
